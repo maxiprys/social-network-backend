@@ -1,0 +1,17 @@
+version: '2.2'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    # volumes:
+    #   - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+
+  social-network-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3800:3800
+    depends_on:
+      - mongo
